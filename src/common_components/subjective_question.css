@@ -1,0 +1,12 @@
+.sub-input-multiline {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    flex: 1;
+    box-sizing: border-box;
+    outline: none;
+    width: 100%;
+    resize: none;
+    margin: 1rem 0rem;
+}

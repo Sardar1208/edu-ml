@@ -171,7 +171,7 @@ function Dashboard() {
               <Calendar
                 setSelectedDate={(e) => setSelectedDate(e)}
                 format="range"
-                size="sm"
+                size="md"
                 dayFormat="normal"
               />
             </div>

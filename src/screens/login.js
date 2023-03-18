@@ -14,7 +14,7 @@ function Login() {
       password: password,
     };
 
-    const req = await fetch("https://education-y04h.onrender.com/user/login", {
+    const req = await fetch("https://education-y04h.onrender.com/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

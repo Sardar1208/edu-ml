@@ -3,8 +3,26 @@ import Timer from "../common_components/timer";
 import { questions } from "../constants/test_data";
 import "./test.css";
 import "../common_styles/navbar.css";
+import { useEffect, useState } from "react";
 
 function Test() {
+
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log(e);
+    // todo - filter by name
+    // console.log(e.target[0]);
+
+    // let res = e.target.filter((input) => input.checked === true)
+    console.log(list);
+  }
+
   return (
     <div>
       {/* navbar */}
@@ -70,17 +88,23 @@ function Test() {
             <span> - Each correct question awards 1 Mark</span>
             <span> - There is no negetive marking</span>
           </div>
-          {questions.map((question, index) => {
-            return (
-              <MCQ
-                question={question.question}
-                option1={question.option1}
-                option2={question.option2}
-                option3={question.option3}
-                option4={question.option4}
-              />
-            );
-          })}
+          <form onSubmit={(e) => handleSubmit(e)}>
+            {questions.map((question, index) => {
+              return (
+                <MCQ
+                  question={question.question}
+                  option1={question.option1}
+                  option2={question.option2}
+                  option3={question.option3}
+                  option4={question.option4}
+                  id={question._id}
+                  list={list}
+                  setList={setList}
+                />
+              );
+            })}
+            <button type="submit">Submit</button>
+          </form>
         </div>
       </div>
     </div>

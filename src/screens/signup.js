@@ -33,7 +33,7 @@ function SignUp() {
     };
 
     const res = await fetch(
-      "https://education-y04h.onrender.com/user/register",
+      "https://education-y04h.onrender.com/auth/register",
       {
         method: "POST",
         headers: {

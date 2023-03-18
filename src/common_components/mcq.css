@@ -2,8 +2,16 @@
     display: flex;
     gap: 1rem;
     font-size: 1.2rem;
+    min-height: 40px;
+    align-items: center;
 }
-
+.mcq-input > input{
+    cursor: pointer;
+}
+.mcq-input:has(:checked) {
+    background: #7aca0c;
+    border-radius: 6px;
+}
 .mcq-options {
     margin-top: 1rem;
     display: flex;

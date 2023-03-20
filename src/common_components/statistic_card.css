@@ -1,18 +1,16 @@
 .statistic {
     display: flex;
+    align-items: center;
     border-radius: 1rem;
-    padding: 2rem 2rem;
+    padding: 1rem 1rem;
     background-color: white;
-    gap: 3rem;
+    gap: 2rem;
     margin-bottom: 2rem;
     box-shadow: 1px 0px 6px gainsboro;
+    flex: 1;
 }
 
 .statistic-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', serif;
     letter-spacing: 1px;
 }

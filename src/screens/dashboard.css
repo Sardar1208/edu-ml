@@ -1,6 +1,10 @@
 .dashboard-body {
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 70% 25%;
+    gap: 2rem;
+    height: "100%";
+    flex: 1;
+    background-color: white;
 }
 
 .dashboard-left {
@@ -38,6 +42,7 @@
 
 .dashboard-report-statistics-score {
     display: flex;
+    justify-content: space-evenly;
     border-radius: 1rem;
     padding: 2rem 2rem;
     background-color: white;
@@ -69,4 +74,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 2rem;
+}
+
+.dashboard-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: "100%";
+    padding: 2rem 0rem;
+    background-color: white;
+    box-shadow: 1px 0px 6px gainsboro;
 }

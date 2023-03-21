@@ -7,7 +7,11 @@ function MCQ(props) {
     console.log(val.target.id);
     let res = {
       id: val.target.name,
-      andwer: val.target.id,
+      answer: val.target.id,
+    }
+    if(props.list.length === 0){
+      props.setList((prevData) => [...prevData, res]);
+      return;
     }
     for(let i = 0; i<= props.list.length; i++) {
       const input = props.list[i];
@@ -15,9 +19,7 @@ function MCQ(props) {
       if(input.id === val.target.id) {
         continue;
       }
-      let temp = props.list;
-      temp.add(res);
-      props.setList(temp);
+      props.setList((prevData) => [...prevData, res]);
       return;
     }
   }

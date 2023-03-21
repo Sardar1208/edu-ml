@@ -13,14 +13,25 @@ function Test() {
 
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(e);
-    // todo - filter by name
-    // console.log(e.target[0]);
-
-    // let res = e.target.filter((input) => input.checked === true)
     console.log(list);
+    var data = {
+      questions: list,
+    }
+    
+    // do the POST api call and submit test results
+    const req = await fetch("https://education-y04h.onrender.com/user/submit-test", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    
+    let res = req.json();
+    console.log(res);
+    return res;
   }
 
   return (

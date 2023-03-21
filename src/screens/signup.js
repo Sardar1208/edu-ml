@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import "./signup.css";
 
@@ -27,24 +29,20 @@ function SignUp() {
   }
 
   async function register() {
+
     let data = {
       "username": username,
       "password": password,
     };
-
-    const res = await fetch(
-      "https://education-y04h.onrender.com/auth/register",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    );
-
-    console.log(await res.text());
-    return await res.text();
+      const res =  axios.post("https://education-y04h.onrender.com/auth/register",data);
+      toast.promise(
+        res,
+        {
+          loading: 'Loading',
+          success: (data) => `${data.data}`,
+          error: (err) => `${err.response.data}`,
+        }
+      );
   }
 
   return (

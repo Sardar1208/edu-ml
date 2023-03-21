@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 
@@ -13,18 +15,19 @@ function Login() {
       username: username,
       password: password,
     };
+      const res = axios.post("https://education-y04h.onrender.com/auth/login", data);
+      toast.promise(
+        res,
+        {
+          loading: 'Loading',
+          success: (data) => {
+            navigate("/dashboard")
+            return `Successfully Logged In`
+          },
+          error: (err) => `${err.response.data}`,
+        }
+      );
 
-    const req = await fetch("https://education-y04h.onrender.com/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    
-    let res = req.json();
-    console.log(res);
-    return res;
   }
 
   return (
@@ -58,13 +61,7 @@ function Login() {
 
         <button
           className="login-btn"
-          onClick={async () => {
-            let res = await login();
-            console.log(res.data);
-            if(res.data) {
-              navigate("/test");
-            }
-          }}
+          onClick={login}
         >
           Login
         </button>

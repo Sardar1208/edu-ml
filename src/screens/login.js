@@ -21,6 +21,8 @@ function Login() {
         {
           loading: 'Loading',
           success: (data) => {
+            console.log(data);
+            localStorage.setItem("auth_token", data.data.token);
             navigate("/dashboard")
             return `Successfully Logged In`
           },

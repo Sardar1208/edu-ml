@@ -8,6 +8,7 @@ import SignUp from "./screens/signup";
 import Dashboard from "./screens/dashboard";
 import Test from "./screens/test";
 import { Toaster } from "react-hot-toast";
+import TestResult from "./screens/test_result";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/test",
     element: <Test />,
+  },
+  {
+    path: "/test_result",
+    element: <TestResult />,
   },
 ]);
 

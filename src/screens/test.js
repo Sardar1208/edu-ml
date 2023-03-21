@@ -6,33 +6,34 @@ import "../common_styles/navbar.css";
 import { useEffect, useState } from "react";
 
 function Test() {
-
   const [list, setList] = useState([]);
 
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(list);
     var data = {
       questions: list,
-    }
-    
+    };
+
     // do the POST api call and submit test results
-    const req = await fetch("https://education-y04h.onrender.com/user/submit-test", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    
+    const req = await fetch(
+      "https://education-y04h.onrender.com/user/submit-test",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": localStorage.getItem("auth_token").toString(),
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
     let res = req.json();
     console.log(res);
     return res;
-  }
+  };
 
   return (
     <div>
@@ -99,7 +100,7 @@ function Test() {
             <span> - Each correct question awards 1 Mark</span>
             <span> - There is no negetive marking</span>
           </div>
-          <form onSubmit={(e) => handleSubmit(e)}>
+          <form onSubmit={async (e) => await handleSubmit(e)}>
             {questions.map((question, index) => {
               return (
                 <MCQ
@@ -111,10 +112,13 @@ function Test() {
                   id={question._id}
                   list={list}
                   setList={setList}
+                  isEditable={true}
                 />
               );
             })}
-            <button type="submit" className="submit-btn">Submit</button>
+            <button type="submit" className="submit-btn">
+              Submit
+            </button>
           </form>
         </div>
       </div>

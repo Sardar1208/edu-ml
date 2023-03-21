@@ -1,5 +1,6 @@
 export var user_data = {
-    username: "Sarthak",
+    username: "Sarthak Bakre",
+    email: "sarthak.bakre@gmail.com",
     subjects: [
         {name: "Physics", score: "70%"},
         {name: "Mathematics", score: "65%"},

@@ -40,6 +40,34 @@ function Dashboard() {
       {/* BODY */}
       <div className="dashboard-body">
         <div className="dashboard-left">
+          <div className="dashboard-profile">
+            <div className="dashboard-subunit-title">My Profile</div>
+            <div className="dashboard-profile-main">
+              <div
+                style={{
+                  width: "10rem",
+                  height: "10rem",
+                  borderRadius: "5rem",
+                  overflow: "hidden",
+                }}
+              >
+                <img
+                  src="/profile_icon.png"
+                  alt={"profile"}
+                  width={"100%"}
+                  height={"100%"}
+                />
+              </div>
+
+              <div className="dashboard-profile-info">
+                <span>{user_data.username}</span>
+                <span>{user_data.email}</span>
+                <span>Subjects: {user_data.subjects.length}</span>
+                <span>Tests attempted: {user_data.previous_tests.length}</span>
+              </div>
+            </div>
+          </div>
+
           <div className="dashboard-report-statistics-a" style={{ flex: 1 }}>
             <div className="dashboard-subunit-title">Courses</div>
             <div style={{ display: "flex", gap: "1rem", flex: 1 }}>
@@ -177,7 +205,7 @@ function Dashboard() {
           >
             All Subjects
           </div>
-          <div style={{ width: "100%"}}>
+          <div style={{ width: "100%" }}>
             {user_data.subjects.map((subject) => {
               return (
                 <div
@@ -189,7 +217,7 @@ function Dashboard() {
                     justifyContent: "space-between",
                   }}
                 >
-                  <div style={{display: "flex", gap: "2rem"}}>
+                  <div style={{ display: "flex", gap: "2rem" }}>
                     <div
                       style={{
                         width: "2rem",
@@ -197,12 +225,14 @@ function Dashboard() {
                         borderRadius: "1rem",
                         backgroundColor: "blue",
                         display: "flex",
-                        justifyContent:"center",
+                        justifyContent: "center",
                         alignItems: "center",
                         color: "white",
-                        fontWeight: "bold"
+                        fontWeight: "bold",
                       }}
-                    >{subject.name[0].toUpperCase()}</div>
+                    >
+                      {subject.name[0].toUpperCase()}
+                    </div>
                     <span
                       style={{
                         fontSize: "1.2rem",

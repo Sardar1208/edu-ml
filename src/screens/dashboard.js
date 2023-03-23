@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PieChart } from "react-minimal-pie-chart";
 import moment from "moment";
 import "../common_styles/navbar.css";
@@ -8,9 +8,31 @@ import { Calendar } from "custom-calendar-vs";
 import { user_data } from "../constants/user_data";
 import { CircularProgressbar } from "react-circular-progressbar";
 import StatisticCard from "../common_components/statistic_card";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const [selectedDate, setSelectedDate] = useState(moment());
+  const navigate = useNavigate();
+
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  async function fetchUserData() {
+    const req = await fetch("https://education-y04h.onrender.com/user/stats", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": localStorage.getItem("auth_token").toString(),
+      },
+    });
+
+    let res = await req.json();
+    console.log(res);
+    setUserData(res);
+  }
 
   return (
     <div style={{ backgroundColor: "white", height: "100vh" }}>
@@ -69,15 +91,15 @@ function Dashboard() {
           </div>
 
           <div className="dashboard-report-statistics-a" style={{ flex: 1 }}>
-            <div className="dashboard-subunit-title">Courses</div>
+            <div className="dashboard-subunit-title">Recommended Videos</div>
             <div style={{ display: "flex", gap: "1rem", flex: 1 }}>
               <StatisticCard
-                title={"Aptitude and Reasoning"}
-                subtitle={"Aptitude and Reasoning"}
+                title={"Electricity and magnetism"}
+                subtitle={"Electricity and magnetism"}
               />
               <StatisticCard
-                title={"Aptitude and Reasoning"}
-                subtitle={"Aptitude and Reasoning"}
+                title={"Database Administration"}
+                subtitle={"Database Administration"}
               />
             </div>
             <div style={{ display: "flex", gap: "1rem" }}>
@@ -86,8 +108,8 @@ function Dashboard() {
                 subtitle={"Aptitude and Reasoning"}
               />
               <StatisticCard
-                title={"Aptitude and Reasoning"}
-                subtitle={"Aptitude and Reasoning"}
+                title={"Data Structures and Algorithms"}
+                subtitle={"Data Structures and Algorithms"}
               />
             </div>
           </div>
@@ -104,8 +126,8 @@ function Dashboard() {
                 }}
               >
                 <CircularProgressbar
-                  value={user_data.previous_tests[0].score}
-                  text={user_data.previous_tests[0].score + "%"}
+                  value={userData != null ? parseInt(userData.last_score) : 0}
+                  text={userData != null ? parseInt(userData.last_score) + "%" : "0%"}
                 />
                 <span
                   style={{
@@ -127,8 +149,8 @@ function Dashboard() {
                 }}
               >
                 <CircularProgressbar
-                  value={user_data.overall_score}
-                  text={user_data.overall_score + "%"}
+                  value={userData != null ? parseInt(userData.overall_score) : 0}
+                  text={userData != null ? parseInt(userData.overall_score) + "%" : "0%"}
                 />
                 <span
                   style={{
@@ -181,7 +203,16 @@ function Dashboard() {
                         color: index === 0 ? "white" : "gray",
                       }}
                     >
-                      {test.time}
+                      <button
+                        style={{
+                          backgroundColor: "transparent",
+                          border: "none",
+                          color: index === 0 ? "white" : "blue",
+                        }}
+                        onClick={() => navigate("/test")}
+                      >
+                        Start Test
+                      </button>
                     </span>
                   </div>
                 );

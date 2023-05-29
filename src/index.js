@@ -9,6 +9,8 @@ import Dashboard from "./screens/dashboard";
 import Test from "./screens/test";
 import { Toaster } from "react-hot-toast";
 import TestResult from "./screens/test_result";
+import Videos from "./screens/videos";
+import Recommended from "./screens/recommended";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
   {
     path: "/test_result",
     element: <TestResult />,
+  },
+  {
+    path: "/recommended",
+    element: <Recommended />,
+  },
+  {
+    path: "/videos",
+    element: <Videos />,
   },
 ]);
 

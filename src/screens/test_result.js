@@ -1,16 +1,19 @@
 import "./test.css";
 import "../common_styles/navbar.css";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MCQResult from "../common_components/mcq_result";
 
 function TestResult() {
   const [data, setData] = useState(null);
   const { state } = useLocation();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const { res } = state;
     setData(res);
+    console.log(res);
   }, []);
 
   return (
@@ -25,11 +28,11 @@ function TestResult() {
           <a href="/dashboard" className="nav-link">
             Dashboard
           </a>
-          <a href="#a" className="nav-link">
-            My Tests
+          <a href="/recommended" className="nav-link">
+            Practice
           </a>
-          <a href="#a" className="nav-link">
-            Profile
+          <a href="/videos" className="nav-link">
+            video Lectures
           </a>
         </div>
 
@@ -40,7 +43,11 @@ function TestResult() {
 
       <div className="test-parent">
         <div className="test-hud">
-          <button className="submit-btn">Go To Dashboard</button>
+          <button className="recommended-btn" style={{ margin: "40px" }} onClick={()=>{
+            navigate("/recommended", { state: { res: data.recommend_questions } });
+          }}>
+            Recommended Questions
+          </button> 
         </div>
         <div className="test-main">
           <div className="testresult-submitted">

@@ -46,11 +46,14 @@ function Dashboard() {
           <a href="/dashboard" className="nav-link">
             Dashboard
           </a>
-          <a href="#a" className="nav-link">
-            My Tests
+          <a
+            href="/recommended"
+            className="nav-link"
+          >
+            Practice
           </a>
-          <a href="#a" className="nav-link">
-            Profile
+          <a href="/videos" className="nav-link">
+            video Lectures
           </a>
         </div>
 
@@ -127,7 +130,11 @@ function Dashboard() {
               >
                 <CircularProgressbar
                   value={userData != null ? parseInt(userData.last_score) : 0}
-                  text={userData != null ? parseInt(userData.last_score) + "%" : "0%"}
+                  text={
+                    userData != null
+                      ? parseInt(userData.last_score) + "%"
+                      : "0%"
+                  }
                 />
                 <span
                   style={{
@@ -149,8 +156,14 @@ function Dashboard() {
                 }}
               >
                 <CircularProgressbar
-                  value={userData != null ? parseInt(userData.overall_score) : 0}
-                  text={userData != null ? parseInt(userData.overall_score) + "%" : "0%"}
+                  value={
+                    userData != null ? parseInt(userData.overall_score) : 0
+                  }
+                  text={
+                    userData != null
+                      ? parseInt(userData.overall_score) + "%"
+                      : "0%"
+                  }
                 />
                 <span
                   style={{
@@ -209,7 +222,7 @@ function Dashboard() {
                           border: "none",
                           color: index === 0 ? "white" : "blue",
                         }}
-                        onClick={() => navigate("/test")}
+                        onClick={() => navigate("/test", { state: { practice: false } })}
                       >
                         Start Test
                       </button>

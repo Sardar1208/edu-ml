@@ -1,0 +1,20 @@
+.recommended-card {
+    border-radius: 1rem;
+    padding: 1rem 1rem;
+    background-color: white;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 1px 0px 6px gainsboro;
+    flex: 1;
+    width: 50%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recommended-cards-parent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

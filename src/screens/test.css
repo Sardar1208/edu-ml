@@ -125,6 +125,18 @@
     opacity: 0.9;
 }
 
+.recommended-btn{
+    background: #108efe;
+    font-size: 1.2rem;
+    border: navajowhite;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    /* width: 8rem; */
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
 
 
 

@@ -4,19 +4,27 @@ import "./test.css";
 import "../common_styles/navbar.css";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-function Test() {
+function Test(props) {
   const [list, setList] = useState([]);
   const [questions, setQuestions] = useState(null);
 
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   useEffect(() => {
     fetchTestData();
   }, []);
 
   async function fetchTestData() {
+
+    const practice = state?.res || null;
+    if(practice != null) {
+      setQuestions(practice);
+      return;
+    }
+
     const req = await fetch(
       "https://education-y04h.onrender.com/user/questions",
       {
@@ -53,12 +61,10 @@ function Test() {
       loading: "Loading",
       success: async (data) => {
         console.log(data);
-        let res = data.json().then(
-          (response) => {
-            console.log(response);
-            navigate("/test_result", { state: { res: response } });
-          }
-        );
+        let res = data.json().then((response) => {
+          console.log(response);
+          navigate("/test_result", { state: { res: response } });
+        });
       },
       error: (err) => `${err.response.data}`,
     });
@@ -76,11 +82,11 @@ function Test() {
           <a href="/dashboard" className="nav-link">
             Dashboard
           </a>
-          <a href="#a" className="nav-link">
-            My Tests
+          <a href="/recommended" className="nav-link">
+            Practice
           </a>
-          <a href="#a" className="nav-link">
-            Profile
+          <a href="/videos" className="nav-link">
+            video Lectures
           </a>
         </div>
 

@@ -1,0 +1,19 @@
+.videos-parent {
+    display: grid;
+    grid-template-columns: 25% 75%;
+}
+
+.videos-leftbar{
+    grid-column: 1/2;
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    gap: 1rem;
+}
+
+.videos-player{
+    grid-column: 2/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
